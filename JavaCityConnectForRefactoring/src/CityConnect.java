@@ -221,7 +221,8 @@ public class CityConnect {
 
 			if (existing_start_location == null) { // beginning of empty slots
 				return NOT_FOUND;
-			} else if (sameRoute(existing_start_location, existing_end_location, newStartLocation, newEndLocation)) {
+			} else if (sameRoute(existing_start_location, existing_end_location, 
+					newStartLocation, newEndLocation)) {
 				return i;
 			}
 		}
@@ -264,8 +265,8 @@ public class CityConnect {
 		return String.format(MESSAGE_ADDED, newStartLocation, newEndLocation, distance);
 	}
 
-	private static void addRouteAtPosition(String newStartLocation, String newEndLocation, String distance,
-			int entryPosition) {
+	private static void addRouteAtPosition(String newStartLocation, 
+			String newEndLocation, String distance, int entryPosition) {
 		route[entryPosition][STORAGE_POSITION_START_LOCATION] = newStartLocation;
 		route[entryPosition][STORAGE_POSITION_END_LOCATION] = newEndLocation;
 		route[entryPosition][STORAGE_POSITION_DISTANCE] = distance;
@@ -285,7 +286,8 @@ public class CityConnect {
 
 			if (existingStartLocation == null) { // empty slot
 				return i;
-			} else if (sameRoute(existingStartLocation, existingEndLocation, newStartLocation, newEndLocation)) {
+			} else if (sameRoute(existingStartLocation, existingEndLocation, 
+					newStartLocation, newEndLocation)) {
 				return i;
 			}
 		}
@@ -295,15 +297,18 @@ public class CityConnect {
 	/**
 	 * This operation checks if two routes represents the same route.
 	 */
-	private static boolean sameRoute(String startLocation1, String endLocation1, String startLocation2,
-			String endLocation2) {
+	private static boolean sameRoute(String startLocation1, String endLocation1, 
+			String startLocation2,String endLocation2) {
 
-		if ((startLocation1 == null) || (endLocation1 == null) && (startLocation2 == null) || (endLocation2 == null)) {
+		if ((startLocation1 == null) || (endLocation1 == null) && 
+				(startLocation2 == null) || (endLocation2 == null)) {
 			throw new Error("Route end points cannot be null");
 		}
 
-		return (startLocation1.equalsIgnoreCase(startLocation2) && endLocation1.equalsIgnoreCase(endLocation2))
-				|| (startLocation1.equalsIgnoreCase(endLocation2) && endLocation1.equalsIgnoreCase(startLocation2));
+		return (startLocation1.equalsIgnoreCase(startLocation2) 
+				&& endLocation1.equalsIgnoreCase(endLocation2))
+				|| (startLocation1.equalsIgnoreCase(endLocation2) 
+				&& endLocation1.equalsIgnoreCase(startLocation2));
 	}
 
 	private static boolean isPositiveNonZeroInt(String s) {
